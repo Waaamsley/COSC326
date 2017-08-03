@@ -1,3 +1,8 @@
+/** 
+  * James Walmslmey
+  * 03 August 2017
+  */
+
 import java.util.*;
 import java.lang.*;
 
