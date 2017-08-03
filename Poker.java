@@ -57,7 +57,7 @@ public class Poker{
                 index = numLogic2.indexOf(card1.substring(0, card1.length()-1).toUpperCase()); 
             }
             if (index == -1 || houseLogic.indexOf(card1.substring(card1.length()-1, card1.length()).toUpperCase()) == -1 
-                || cHand.length < 5){
+                || cHand.length != 5){
                 for (String s : cHand){
                     builder.append(s + " ");
                 }
