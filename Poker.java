@@ -15,7 +15,8 @@ public class Poker{
     // global variables 
     private static List<String> outputs = new ArrayList<String>();
     private static String[] output;
-    private static final List<String> numLogic = Arrays.asList("1", "13", "12", "11", "10", "9", "8", "7", "6", "5", "4", "3", "2");
+    private static final List<String> numLogic = Arrays.asList("1", "13", "12", "11", "10", "9", "8", "7", "6", 
+                                                               "5", "4", "3", "2");
     private static final List<String> numLogic2 = Arrays.asList("A", "K", "Q", "J", "T");
     private static final List<String> houseLogic = Arrays.asList("S", "H", "D", "C");
     
@@ -55,7 +56,8 @@ public class Poker{
             if ((index = numLogic.indexOf(card1.substring(0, card1.length()-1).toUpperCase())) == -1){
                 index = numLogic2.indexOf(card1.substring(0, card1.length()-1).toUpperCase()); 
             }
-            if (index == -1 || houseLogic.indexOf(card1.substring(card1.length()-1, card1.length()).toUpperCase()) == -1 || cHand.length < 5){
+            if (index == -1 || houseLogic.indexOf(card1.substring(card1.length()-1, card1.length()).toUpperCase()) == -1 
+                || cHand.length < 5){
                 for (String s : cHand){
                     builder.append(s + " ");
                 }
