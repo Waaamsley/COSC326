@@ -15,11 +15,9 @@ public class Poker{
     // global variables 
     private static List<String> outputs = new ArrayList<String>();
     private static String[] output;
-    private static final List<String> numLogic = Arrays.asList("1", "13", "12", "11", "10", "9", "8", "7", "6", 
-                                                               "5", "4", "3", "2");
+    private static final List<String> numLogic = Arrays.asList("1", "13", "12", "11", "10", "9", "8", "7", "6", "5", "4", "3", "2");
     private static final List<String> numLogic2 = Arrays.asList("A", "K", "Q", "J", "T");
     private static final List<String> houseLogic = Arrays.asList("S", "H", "D", "C");
-    
     /** 
      * reads in input sending it to methods
      * @Param args: input
@@ -33,7 +31,7 @@ public class Poker{
         while (scan.hasNextLine()){
             input = scan.nextLine();
             hand = input.split("-|/| ");
-            valid = validChecker(hand);
+            valid = validChecker(hand, input);
             if (valid){
                 sort(hand);
             }
@@ -49,20 +47,22 @@ public class Poker{
      * Checks if input is a valid hand
      * @Param cHand: current hand being checked
      */
-    private static boolean validChecker(String[] cHand){
-        StringBuilder builder = new StringBuilder();
+        private static boolean validChecker(String[] cHand, String original){
         int index;
-        for (String card1 : cHand){
-            if ((index = numLogic.indexOf(card1.substring(0, card1.length()-1).toUpperCase())) == -1){
-                index = numLogic2.indexOf(card1.substring(0, card1.length()-1).toUpperCase()); 
-            }
-            if (index == -1 || houseLogic.indexOf(card1.substring(card1.length()-1, card1.length()).toUpperCase()) == -1 
-                || cHand.length != 5){
-                for (String s : cHand){
-                    builder.append(s + " ");
+        if (!Arrays.equals(original.split(" "), cHand) && !Arrays.equals(original.split("-"), cHand) && !Arrays.equals(original.split("/"), cHand)){
+            outputs.add("Invalid: " + original);
+            return false;
+        }else{
+            for (String card1 : cHand){
+                if (card1.length() != 2){
+                    outputs.add("Invalid: " + original);
+                    return false;
+                }else if ((index = numLogic.indexOf(card1.substring(0, card1.length()-1).toUpperCase())) == -1){
+                    index = numLogic2.indexOf(card1.substring(0, card1.length()-1).toUpperCase()); 
+                }if (index == -1 || houseLogic.indexOf(card1.substring(card1.length()-1, card1.length()).toUpperCase()) == -1 || cHand.length != 5){
+                    outputs.add("Invalid: " + original);
+                    return false;
                 }
-                outputs.add("Invalid: " + builder.toString().substring(0, builder.length()-1));
-                return false;
             }
         }
         return true;
@@ -89,7 +89,9 @@ public class Poker{
                 if ((index2 = numLogic.indexOf(card2.substring(0, card2.length()-1).toUpperCase())) == -1){
                     index2 = numLogic2.indexOf(card2.substring(0, card2.length()-1).toUpperCase());
                 }
-                comp = Integer.compare(index, index2);
+                Integer i1 = (Integer) index;
+                Integer i2 = (Integer) index2;
+                comp = i1.compareTo(i2);
                 if (comp < 0){
                     diffCount++;
                 }else if(comp == 0){
@@ -98,8 +100,11 @@ public class Poker{
             }
             output[diffCount] = card1;
         }
-        for (String s : output){
-            builder.append(s + " ");
+        for (int i = 0; i < output.length; i++){
+            if (output[i] == null){
+                output[i] = output[i - 1];
+            }
+            builder.append(output[i] + " ");
         }
         outputs.add(builder.toString().substring(0, builder.length()-1).toUpperCase());
         return;
@@ -113,7 +118,10 @@ public class Poker{
     private static int houseSort(String c1, String c2){
         int index1 = houseLogic.indexOf(c1.substring(c1.length()-1, c1.length()).toUpperCase()); 
         int index2 = houseLogic.indexOf(c2.substring(c2.length()-1, c2.length()).toUpperCase());
-        Integer comp = Integer.compare(index1, index2);
+        Integer i1 = (Integer) index1;
+        Integer i2 = (Integer) index2;
+        Integer comp = i1.compareTo(i2);
+        
         if (comp < 0){
             return 1;
         }
