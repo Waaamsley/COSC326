@@ -15,23 +15,23 @@ public class Poker{
     // global variables 
     private static List<String> outputs = new ArrayList<String>();
     private static String[] output;
-    private static final List<String> numLogic = Arrays.asList("1", "13", "12", "11", "10", "9", "8", "7", "6", "5", "4", "3", "2");
-    private static final List<String> numLogic2 = Arrays.asList("A", "K", "Q", "J", "T");
+    private static final List<String> numLogic = Arrays.asList("A", "K", "Q", "J", "10", "9", "8", "7", "6", "5", "4", "3", "2");
+    private static final List<String> nums = Arrays.asList("1", "13", "12", "11");
     private static final List<String> houseLogic = Arrays.asList("S", "H", "D", "C");
+    private static String[] hand;
     /** 
      * reads in input sending it to methods
      * @Param args: input
      */
     public static void main(String[] args){
         Scanner scan = new Scanner(System.in);
-        String input;
-        String[] hand;
+        String input;;
         int count = 0;
         boolean valid;
         while (scan.hasNextLine()){
             input = scan.nextLine();
             hand = input.split("-|/| ");
-            valid = validChecker(hand, input);
+            valid = validChecker(input);
             if (valid){
                 sort(hand);
             }
@@ -47,19 +47,34 @@ public class Poker{
      * Checks if input is a valid hand
      * @Param cHand: current hand being checked
      */
-        private static boolean validChecker(String[] cHand, String original){
-        int index;
-        if (!Arrays.equals(original.split(" "), cHand) && !Arrays.equals(original.split("-"), cHand) && !Arrays.equals(original.split("/"), cHand)){
+    private static boolean validChecker(String original){
+        int cIndex;
+        int hIndex;
+        int switchC;
+        String card;
+        if (!Arrays.equals(original.split(" "), hand) && !Arrays.equals(original.split("-"), hand) && !Arrays.equals(original.split("/"), hand)){
             outputs.add("Invalid: " + original);
             return false;
         }else{
-            for (String card1 : cHand){
-                if (card1.length() != 2){
+            for (int i = 0; i < 5; i++){
+                card = hand[i];
+                if (card.substring(0, card.length()-1).toUpperCase().equals("T")){
+                    hand[i] = "10" + card.substring(card.length()-1, card.length());
+                    card = hand[i];
+                }
+                if (card.length() < 2){
                     outputs.add("Invalid: " + original);
                     return false;
-                }else if ((index = numLogic.indexOf(card1.substring(0, card1.length()-1).toUpperCase())) == -1){
-                    index = numLogic2.indexOf(card1.substring(0, card1.length()-1).toUpperCase()); 
-                }if (index == -1 || houseLogic.indexOf(card1.substring(card1.length()-1, card1.length()).toUpperCase()) == -1 || cHand.length != 5){
+                }
+                switchC = nums.indexOf(card.substring(0, card.length()-1));
+                hIndex = houseLogic.indexOf(card.substring(card.length()-1, card.length()).toUpperCase());
+                if (switchC != -1 && hIndex != -1){
+                    hand[i] = numLogic.get(switchC) + houseLogic.get(hIndex);
+                    card = hand[i];
+                 
+                }                
+                cIndex = numLogic.indexOf(card.substring(0, card.length()-1).toUpperCase());
+                if (cIndex == -1 || hIndex == -1 || hand.length != 5){
                     outputs.add("Invalid: " + original);
                     return false;
                 }
@@ -79,18 +94,16 @@ public class Poker{
         Integer comp;
         int index;
         int index2;
+        Integer i1;
+        Integer i2;
         int diffCount;
         for (String card1 : cHand){
             diffCount = 0;
-            if ((index = numLogic.indexOf(card1.substring(0, card1.length()-1).toUpperCase())) == -1){
-                index = numLogic2.indexOf(card1.substring(0, card1.length()-1).toUpperCase());
-            }
+            index = numLogic.indexOf(card1.substring(0, card1.length()-1).toUpperCase());
             for (String card2 : cHand){
-                if ((index2 = numLogic.indexOf(card2.substring(0, card2.length()-1).toUpperCase())) == -1){
-                    index2 = numLogic2.indexOf(card2.substring(0, card2.length()-1).toUpperCase());
-                }
-                Integer i1 = (Integer) index;
-                Integer i2 = (Integer) index2;
+                index2 = numLogic.indexOf(card2.substring(0, card2.length()-1).toUpperCase());
+                i1 = (Integer) index;
+                i2 = (Integer) index2;
                 comp = i1.compareTo(i2);
                 if (comp < 0){
                     diffCount++;
