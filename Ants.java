@@ -88,8 +88,8 @@ public class Ants{
             for (int i = 0; i < genes.size(); i++){
                 if (hash.get(x + " " + y).equals(genes.get(i).substring(0, 1))){
                     stepsTaken++;
-                    newState = newDirection + mod2;
                     newDirection = directions.indexOf(direction) + mod;
+                    newState = newDirection + mod2;
                     direction = genes.get(i).substring(newDirection, newDirection+1);
                     state = genes.get(i).substring(newState, newState+1);
                     hash.put(x + " " + y, state);
