@@ -174,18 +174,20 @@ public class Quilt{
 		public void actionPerformed(ActionEvent e){
 			JButton b = (JButton) e.getSource();
 			if (b.getText().equals("New Layer")){
-				quiltFrame.remove(master);
-				master.remove(panels);
+				//quiltFrame.remove(master);
+				//master.remove(panels);
 				if (inputs.size() == 0){
-					sizeValue = 1.0;
-				}
-				inputs.add(sizeValue + " " + redValue + " " + greenValue
+					inputs.add(1 + " " + redValue + " " + greenValue
 					+ " " + blueValue);
+				}else if (inputs.size() > 0){
+					inputs.add(sizeValue + " " + redValue + " " + greenValue
+						+ " " + blueValue);
+				}
 				dS = dSo;
 				builder();
-				panels.setPreferredSize(new Dimension(400, 400));
-				master.add(panels);
-				quiltFrame.add(master);
+				//panels.setPreferredSize(new Dimension(400, 400));
+				//master.add(panels);
+				//quiltFrame.add(master);
 			}
 			else if (b.getText().equals("Delete Layer") && inputs.size() > 0){
 				//quiltFrame.remove(master);
@@ -206,7 +208,6 @@ public class Quilt{
 		
 		public void stateChanged(ChangeEvent e){
 			JSlider s = (JSlider) e.getSource();
-			//if (!s.getValueIsAdjusting()){
 			if (s.getName().equals("sizeS")){
 				sizeValue = ((double)s.getValue()/100);
 			}else if (s.getName().equals("redS")){
@@ -218,8 +219,18 @@ public class Quilt{
 			}
 			color = new Color(redValue, greenValue, blueValue);
 			buttonPanel.sq = new Square(color, hw, x, y);
+			if (layers.size() == 1){
+				inputs.remove(0);
+				inputs.add(1 + " " + redValue + " " + greenValue + " " + blueValue);
+				dS = dSo;
+				builder();
+			}else if (layers.size() > 1){
+				inputs.remove(inputs.size()-1);
+				inputs.add(sizeValue + " " + redValue + " " + greenValue + " " + blueValue);
+				dS = dSo;
+				builder();
+			}
 			quiltFrame.repaint();
-			//}
 		}
 		
 	}
