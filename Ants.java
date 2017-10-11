@@ -1,6 +1,5 @@
 /** 
  * Ants.java
- * James Walmsley - 8358979, Kyle Goucher 8080806
  * August/2017
  */
 
