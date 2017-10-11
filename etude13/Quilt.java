@@ -55,6 +55,13 @@ public class Quilt{
   if (inputs.size() > 0){
    panels = new JLayeredPane();
    builder();
+   String[] str = inputs.get(inputs.size()-1).split(" ");
+    
+    size.setValue((int)(Double.parseDouble(str[0])*100.0));                      
+    red.setValue(Integer.parseInt(str[1]));
+    green.setValue(Integer.parseInt(str[2]));
+    blue.setValue(Integer.parseInt(str[3]));
+	quiltFrame.repaint();
   }else{
    panels = new JLayeredPane();
   }
