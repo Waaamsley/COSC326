@@ -1,12 +1,10 @@
-package etude8;
-
 import java.util.*;
 
 
 public class Main{
 
     public static void main(String[] args){
-        String [] operations = {"+","-","*","/","gcd", "<", ">","="};
+        String [] operations = {"+","-","*","/","gcd", "<", ">","=", "$"};
         Scanner sc = new Scanner(System.in);
         
         while(sc.hasNextLine()){
@@ -15,10 +13,15 @@ public class Main{
             if(!str.isEmpty() && str.charAt(0) != '#'){
                 System.out.println(str);
                 if(inputs.length == 3){
-                    boolean op = Arrays.asList(operations).contains(inputs[1]);
-                    if(!op){
+                  boolean op = Arrays.asList(operations).contains(inputs[1]);
+                  if(!op){
                     System.out.println("# Syntax error");                       
-                  }else{
+                  }
+                 else if(!inputs[0].matches("-?\\d+") || !inputs[2].matches("-?\\d+")){
+
+                    System.out.println("# Syntax error");
+                  }
+                  else{
                     
                     MassiveInt n1 = new MassiveInt(inputs[0]);
                     MassiveInt n2 = new MassiveInt(inputs[2]);
@@ -37,7 +40,7 @@ public class Main{
                         break;
                       case "/" :
                           String[] result =  MassiveInt.divide(n1,n2);
-                          if(result[0].equals("-1")){
+                          if(result[0].equals("0") && result[1].equals("0")){
                               System.out.println("Not Possible");
                           }else{
                                   System.out.println("# " + result[0] + " " + result[1]);
@@ -58,6 +61,9 @@ public class Main{
                         System.out.println("# " +
                                            (MassiveInt.compareTo(n1,n2) == 0));
                         break;
+                        case "$":
+                            System.out.println("# " + (MassiveInt.truncate(n1)));
+                            break;
                         
                     }
                   }

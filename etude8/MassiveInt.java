@@ -1,12 +1,10 @@
-package etude8;
-
 import static java.lang.Math.abs;
 import java.util.*;
 
 
     public class MassiveInt{
           private ArrayList<Integer> number;
-          private boolean negative= false;
+          private boolean negative = false;
 
 
         public MassiveInt(){
@@ -62,6 +60,9 @@ import java.util.*;
     public void negate() {
         this.negative = true;
     }
+        public void pos(){
+            this.negative = false;
+        }
 
         public static  int compareTo(MassiveInt n1, MassiveInt n2){
             ArrayList<Integer> num1 = n1.number;
@@ -94,11 +95,38 @@ import java.util.*;
           ArrayList<Integer> additions = new ArrayList<Integer>();
           ArrayList<Integer> num1 = n1.number;
           ArrayList<Integer> num2 = n2.number;
+          boolean swapped = false;
           
           if(num1.size() < num2.size()){
             Integer[] temp = num1.toArray(new Integer[num1.size()]);
             num1 = num2;
             num2 = new ArrayList<Integer>(Arrays.asList(temp));
+            swapped = true;
+          }else if(num1.size() == num2.size()){
+              for(int i = 0 ; i < num2.size() ; i++){
+                  if(num2.get(i) > num1.get(i)){
+                      swapped = true;
+                      
+                  }else if(num2.get(i) == num1.get(i)){
+                      i = num2.size();
+                  }
+              }
+          }
+          if(n1.negative && !n2.negative){
+              n1.pos();
+              if(swapped){
+                  return subtraction(n2,n1);
+              } else{
+                  return subtraction(n2,n1);
+              }
+          }else if(!n1.negative && n2.negative){
+              n2.pos();
+              if(swapped){
+                  return subtraction(n1,n2);
+              }
+              else{
+                  return subtraction(n2,n1);
+              }
           }
           int index1 = num1.size();
           int count = 0;
@@ -165,6 +193,13 @@ import java.util.*;
                 sm = true;
             }
 
+            boolean negi = false;
+            if (n1.negative && !n2.negative || !n1.negative && n2.negative){
+                negi = true;
+            }
+            big.negative = false;
+            small.negative = false;
+            
             ArrayList<MassiveInt> tens = new ArrayList<MassiveInt>();
             tens.add(big);
             int count = 0;
@@ -173,6 +208,8 @@ import java.util.*;
             MassiveInt couTemp = new MassiveInt("0");
             MassiveInt counter = new MassiveInt("0");
             int t = 10;
+            boolean neg = false;
+            
             
             while(compareTo(counter, small) < 0){
                 resTemp = new MassiveInt(result.toString());
@@ -199,11 +236,14 @@ import java.util.*;
             //System.out.println(result.toString());
             for (int i = 0; i < remaining.number.size(); i++){
                 for (int j = 0; j < remaining.number.get(i); j++){
-                    result = addition(result, new MassiveInt(tens.get(remaining.number.size() - i -1).toString()));
+                    //System.out.println(new MassiveInt(tens.get(remaining.number.size() - i - 1).toString()));
+                    result = addition(result, new MassiveInt(tens.get(remaining.number.size() - i - 1).toString()));
                 }
             }
 
-            
+            if (negi){
+                result.negative = true;
+            }
             return result;
             
         }
@@ -225,7 +265,17 @@ import java.util.*;
             int[] small;
             int [] num2 = new int[nu2.size()];
             int [] num1 = new int[nu1.size()];
-            
+            if(n1.negative && !n2.negative){
+              n2.negate();
+              return addition(n1,n2);
+            }
+            else if(!n1.negative && n2.negative){
+              n2.pos();
+              return addition(n1,n2);
+            }else{
+              
+              
+
             for(int i = 0 ; i < nu1.size() ; i++){
                 if(nu1.get(i) != null){
                     num1[i] = nu1.get(i);
@@ -263,10 +313,20 @@ import java.util.*;
             }
             index1 = big.length;
             index2 = small.length;
+            
             int result[] = new int[index1];
             long difference = 0;
+               for(int i : big){
+                   //System.out.print(i);
+            }
+               //System.out.println();
+            for(int i : small){
+                //System.out.print(i);
+            }
+            //System.out.println();
+            
             while(index2 > 0) {
-                //System.out.println(index1 +  " " + index2);
+                
                 difference = (big[--index1] & LONG_MASK) -
                     (small[--index2] & LONG_MASK) + (difference >> 32);
                 result[index1] = (int)difference;
@@ -297,10 +357,18 @@ import java.util.*;
                     sb.append(i);
                 }
             }
+               
             return new MassiveInt(sb.toString());
+            }
         }
 
         public static String[] divide(MassiveInt n1, MassiveInt n2){;
+            if (n2.toString().equals("0")){
+                String[] a = new String[2];
+                a[0] = "0";
+                a[1] = "0";
+                return a;
+            }
             ArrayList<Integer> num1 = n1.number;
             ArrayList<Integer> num2 = n2.number;
             ArrayList<Integer> div;
@@ -327,6 +395,12 @@ import java.util.*;
                     }
                 }
             }
+            boolean negi = false;
+            if (n1.negative && !n2.negative || !n1.negative && n2.negative){
+                negi = true;
+            }
+            n1.negative = false;
+            n2.negative = false;
             int c = 0;
             MassiveInt count = new MassiveInt("10");
             MassiveInt high = new MassiveInt("10");
@@ -336,19 +410,23 @@ import java.util.*;
             MassiveInt up = new MassiveInt("10");
             MassiveInt zero = new MassiveInt("0");
             MassiveInt rem = (subtraction(n1, multiply(n2, count)));
-            //   System.out.println(rem.toString());
             MassiveInt desire = new MassiveInt(n2.toString());
             boolean down = false;
-            while(compareTo(rem, desire) >= 0 || compareTo(rem, zero) < 0){// && c < 7){
-                //   System.out.println("[]-[]-[]-[]-[]");
-                //  System.out.println(rem.toString() + " " + count.toString() + " " + low.toString());
+            while((compareTo(rem, desire) >= 0 || compareTo(rem, zero) < 0)){
+ 
+                //System.out.println("[]-[]-[]-[]-[]");
+                //System.out.println(rem.toString() + " " + count.toString() + " " + low.toString() + " " + high.toString());
                 if (compareTo(rem, zero) < 0){
+					//System.out.println("h1");
                     high = new MassiveInt(count.toString());
-                    diff = subtraction(high, low);
+                    diff = subtraction(high, new MassiveInt(low.toString()));
+					//System.out.println(diff.toString());
                     diff =  truncate(diff);
+					//System.out.println(diff.toString() + " " + low.toString());
                     down = true;
                     count = addition(diff, new MassiveInt(low.toString()));
                 }else if (compareTo(rem, desire) >= 0){
+					//System.out.println("h2");
                     if (down){
                         low = new MassiveInt(count.toString());
                         diff = subtraction(high, low);
@@ -361,47 +439,52 @@ import java.util.*;
                     }
                 }
                 temp = multiply(n2, count);
-                //System.out.println(n1.toString() + " " + temp.toString());
                 rem = subtraction(n1, temp);
-                //  System.out.println(rem.toString() + " " + desire.toString() + " " + count.toString());
-                c++;
+                //c++;
+                //System.out.println(rem.toString() + " " + desire.toString() + " " + count.toString());
+            }
+            if (negi){
+                count.negative = true;
             }
             result[0] = count.toString();
             result[1] = rem.toString();
-            return result;     
+            
+            return result;
         }
             
 
         public static MassiveInt truncate(MassiveInt n1){
-            ArrayList<Integer> num1 = n1.number;
-            ArrayList<Integer> newNum = new ArrayList<Integer>();
-            long size = num1.size();
-            long remainder;
-            Collections.reverse(num1);
-            long sum = 0;
-            long previous = 10;
-            for(int i = 0; i < size ; i++){
-                if(i == 0){
-                    sum +=(num1.get(i)/2);
-                }else{
-                    sum +=((num1.get(i)*previous)/2);
-                    previous *=10;
-                }
-
-            }
-            while(sum > 0){
-                int digit = (int)sum%10;
-                sum = sum/10;
-                newNum.add(digit);
-            }
-            Collections.reverse(newNum);
-
-            StringBuilder sb = new StringBuilder();
-            for(Integer i  : newNum){
-                sb.append(i.toString());
-            };
-            MassiveInt trunc = new MassiveInt(sb.toString());
-            return trunc;
+			List<MassiveInt> past = new ArrayList<MassiveInt>();
+            MassiveInt num = new MassiveInt(n1.toString());
+			MassiveInt two = new MassiveInt("2");
+			MassiveInt pastR = new MassiveInt("1");
+			MassiveInt result = new MassiveInt("1");
+			int count = 0;
+			int count2 = 0;
+			int t = 10;
+			past.add(result);
+			MassiveInt rDoubled = new MassiveInt("0");
+			while (compareTo(rDoubled, num) < 0){
+				pastR = new MassiveInt(result.toString());
+				result = addition(result, new MassiveInt(past.get(count2).toString()));
+				rDoubled = multiply(new MassiveInt(result.toString()), new MassiveInt(two.toString()));
+				count++;
+				if (count == t){
+					t = 9;
+					count = 0;
+					count2++;
+					past.add(new MassiveInt(result.toString()));
+				}
+			}
+			
+			MassiveInt one = new MassiveInt("1");
+			result = new MassiveInt(pastR.toString());
+			rDoubled = multiply(new MassiveInt(result.toString()), new MassiveInt(two.toString()));
+			//while (compareTo(rDoubled, num) < 0){
+				//result = addition(new MassiveInt(result.toString()), new MassiveInt(one.toString()));
+				//rDoubled = multiply(new MassiveInt(result.toString()), new MassiveInt(two.toString()));
+			//}
+			return new MassiveInt(result.toString());
         }        
         public static MassiveInt gcd(MassiveInt n1, MassiveInt n2){
         MassiveInt a;
@@ -429,7 +512,6 @@ import java.util.*;
 
         return b;
         }
-
 
         @Override
         public String toString(){
