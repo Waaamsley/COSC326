@@ -1,0 +1,7 @@
+Dog 15 
+Cat 17
+Mouse -3
+Dinosaur 50
+Horse -5
+Eagle 10
+Goldfish -40

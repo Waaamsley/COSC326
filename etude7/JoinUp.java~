@@ -1,0 +1,268 @@
+package fucketude7;
+
+import java.util.*;
+
+public class JoinUp{
+
+    private static int count = 0;
+    private static List<Tree<String>> childs;
+
+    private static StringBuilder sb;
+
+    private static String rooty;
+
+    private static Tree<String> treeC;
+
+    private static int[] indexesO = new int[27];
+    private static int[] indexes = new int[27];
+    
+    private static int mod = 97;
+    public static void main(String[] args){
+        ArrayList<String> dict = new ArrayList<String>();
+        ArrayList<String> dict2 = new ArrayList<String>();
+        Scanner scan = new Scanner(System.in);
+        for (int i : indexes){
+            i = 0;
+        }
+        try{
+            while(scan.hasNext()){
+                String w = scan.next();            
+                dict.add(w);
+                dict2.add(w);
+            }
+            if(!dict.contains(args[1])){                   
+            dict.add(args[1]);
+            dict2.add(args[1]);
+                }
+            Collections.sort(dict);
+            Collections.sort(dict2);
+            char c = '!';
+            for (int i = 0; i < dict.size(); i++){
+                char t = dict.get(i).charAt(0);
+                if (c != t){
+                    indexes[(int) t - mod] = i;
+                    indexesO[(int) t - mod] = i;
+                    c = t;
+                }
+            }
+            
+        }catch(NoSuchElementException e){
+            e.printStackTrace();
+            System.out.println("Read in failed");
+        }
+        if (dict.contains(args[1])){
+            List<Tree<String>> root = new ArrayList<Tree<String>>();
+            Tree<String> r = new Tree<String>(args[0]);
+            root.add(r);
+            rooty = r.rootValue;
+            
+            if (args[0].equals(args[1])){
+                join(root, args[1], dict, false);
+                System.out.println(2 + " " + args[0] + " " + args[1]);
+            }else{
+                join(root, args[1], dict, false);
+                for (int ind = 0; ind < indexes.length-1; ind++){
+                    indexes[ind] = indexesO[ind];
+                }
+                root.clear();
+                r = new Tree<String>(args[0]);
+                root.add(r);
+                childs.clear();
+                count = 0;
+                join(root, args[1], dict2, true);
+            }
+        }else{
+            System.out.println(0 + "\n" + 0);
+        }
+    }
+
+    
+    public static boolean presufSingle(String w1, String w2, boolean ord){
+        double len1 =  w1.length();
+        double len2 =  w2.length();
+        if (len1 == 1&& len2 == 1){
+            return  presufDouble(w1,w2,ord);
+        }
+        if (ord){
+            for(double i = 0.0 ;Math.ceil(len2/2+i)
+                    <= len2 ; i++){
+                if(w1.substring((int)(len1-Math.ceil(len2/2) - (int)i),
+                                (int)len1).matches(w2.substring(0,(int)(Math.ceil(len2/2) +i)))){
+                    return true;
+                }
+            }
+        }else{
+            if (len2 == 1){
+                if (w2.matches(w1.substring(0, 1))){
+                    return true;
+                }
+                return  presufDouble(w1,w2,ord);
+            }
+            if(len2 == 3.0){
+                for(double i = 0.0 ; Math.ceil(len2/2+i) <= len2; i++){
+                    if((w1.substring(0,(int) (len2-1.0+i))).matches(w2.substring((int)(Math.ceil(len2/2)-1.0-i),(int) len2))){
+                        return true;
+                    }else{
+                        return  presufDouble(w1,w2,ord);
+                    }
+                }
+            }
+                        
+                
+            for(double i = 0.0 ; Math.ceil(len2/2+i) <= len2; i++){
+                if(w2.substring((int)(Math.ceil(len2/2)-i),
+                                (int)len2).matches(w1.substring(0,(int)(Math.ceil(len2/2)+i)))){
+                    return true;
+                }
+            }
+        }
+        return  presufDouble(w1,w2,ord);
+    }
+
+
+    public static boolean presufDouble(String w1, String w2, boolean ord){
+        double len1 = w1.length();
+        double len2 = w2.length();
+        if(len2 < (Math.ceil(len1/2))){
+            return false;
+        }
+        if (ord){ 
+            for(double i = 0.0 ; (Math.ceil(len1/2)+i) <= len2; i++){
+                if(w1.substring((int)(len1/2 -i), (int)len1).matches(w2.substring(0,
+                    (int)(Math.ceil(len1/2) +i)))){
+                    return true;
+                 }
+            }
+        }else{ 
+            for(double i = 0.0 ; Math.ceil(len1/2)+i <= len2; i++){
+                if(w2.substring((int)(len2 - (Math.ceil(len1/2)) - i),
+                    (int)len2).matches(w1.substring(0,(int)(Math.ceil(len1/2) +i)))){
+                    return true;
+                }
+            }
+        }
+        return false;
+    } 
+ 
+    public static  void join(List<Tree<String>> input, String fin, ArrayList<String> dict, boolean d){
+        count++;
+        System.out.println(count + " --- " + input.size() + " --- " + dict.size());
+        childs = new ArrayList<Tree<String>>();
+        if (input.size() == 0){
+            System.out.println(0);
+            return;
+        }
+        String word2;
+        boolean contains;
+        boolean finito = false;
+        indexes[26] = dict.size();
+        try{
+            for (Tree<String> word : input){
+                for (int p = 0; p < word.rootValue.length(); p++){
+                    indexes[26] = dict.size();
+                    int start = (int) word.rootValue.charAt(p) - mod;
+                    int end = 0;
+                    for (int i = start+1; i < indexes.length; i++){
+                        if (indexes[i] != 0){
+                            end = i;
+                            i = indexes.length;
+                        }
+                    }
+                    //System.out.println(indexes[start] + " " + indexes[end] + " " + end + " " + dict.size());
+                    int t1 = indexes[start];
+                    int t2 = indexes[end];
+                    for (int i = indexes[start], e = indexes[end]; i < e; i++){
+                        word2 = dict.get(i);
+                        if (p >= (word.rootValue.length() - word2.length())){
+                            if (orders(word.rootValue, word2)){
+                                if (d){
+                                    contains = presufDouble(word.rootValue, word2, true);
+                                }else{
+                                    contains = presufSingle(word.rootValue, word2, true);
+                                }
+                            }else{
+                                if (d){
+                                    contains = presufDouble(word2, word.rootValue, false);
+                                }else{
+                                    contains = presufSingle(word2, word.rootValue, false);
+                                }
+                            }
+                            if(contains){
+                                //if (p < (word.rootValue.length() - word2.length())){
+                                  //  System.out.println(word.rootValue + " " + word2 + " " + word.rootValue.length() + " " +word2.length());
+                                //}
+                                treeC = new Tree<String>(word2);
+                                for (String s : word.parentList){
+                                    treeC.parentList.add(s);
+                                }
+                                if (count > 1){
+                                    treeC.parentList.add(word.rootValue);
+                                }
+                                word.add(treeC);
+                                if (d){
+                                    if (word2.equals(fin)){
+                                        finito = true;
+                                        printTrace(treeC);
+                                    }
+                                }else{
+                                    if (word2.equals(fin)){
+                                        finito = true;
+                                        printTrace(treeC);
+                                    }
+                                }   
+                                dict.remove(i);
+                                boolean fixer = false;
+                                for (int fix = 0; fix < indexes.length; fix++){
+                                    if (fixer){
+                                        indexes[fix]--;
+                                    }
+                                    if (fix < (indexes.length) && i >= indexes[fix] && i < indexes[fix+1] && fixer==false){
+                                        fixer = true;
+                                    }
+                                }
+                                i--;
+                                e--;
+                            }
+                            if (finito){
+                                return;
+                            }
+                        }
+                    }
+                }
+                //System.out.println("___---___");
+                getChildren(word);
+               
+            }
+        }catch(StackOverflowError e){
+            e.printStackTrace();
+        }
+        join(childs, fin, dict, d);
+        return;
+    }
+
+    private static void getChildren(Tree<String> p){
+        //if (count < 2){
+        for (Tree<String> c : p.children){
+            //System.out.println(c.rootValue);
+                childs.add(c);
+                }
+        //System.out.println("___---___");
+        //}
+    }
+
+    private static void printTrace(Tree<String> kid){
+        sb = new StringBuilder();
+        List<String> past = kid.parentList;
+        for (String s : past){
+            sb.append(s + " ");
+        }
+        System.out.println(count + 1 + " " + rooty + " " + sb.toString() + kid.rootValue);
+    }
+
+    public static boolean orders(String w1, String w2){
+        if (w2.length() >= w1.length()){
+            return false;
+        }
+        return true;
+    }
+}

@@ -1,0 +1,8 @@
+Dog 12
+Cat 20
+Mouse 4
+Goldfish 183
+Horse 25
+Dinosaur 30
+Eagle 15
+James 10

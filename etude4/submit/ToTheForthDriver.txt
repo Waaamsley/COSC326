@@ -1,0 +1,40 @@
+Q4
+fill up the tank with 28.833332L
+into cans put 43.25L
+go forward for 173KM
+drop off cans filled with 43.25
+go back for 173KM
+fill up the tank with 60L
+into cans put 80L
+go forward for 173KM
+fill up the tank with 14.416666L
+go forward for 547KM
+drop off cans filled with 80L
+fill up the tank with 31.1666L
+go back for 547KM
+fill up the tank with 14.416666L
+go back for 173KM
+fill up the tank with 60L
+into cans put 80L
+go forward for 173KM
+fill up the tank with 14.416666L
+go forward for 547KM
+fill up the tank with 45.5833L
+go forward for 13KM
+drop off cans filled with 20L
+go back for 13KM
+fill up the tank with 2.16666L
+into cans put 1.0833334L
+go forward for 13KM
+fill up the tank with 1.0833334L
+into cans put 18.9166666L
+go forward for 720KM
+drop off cans filled with 60L
+fill up the tank with 60L
+go forward for 720KM
+drop off cans filled with 20L
+fill up the tank with 20L
+go forward for 240KM
+
+
+after using 352.0833333 of petrol you make it to the other side. Now where is that guy looking for that chicken?

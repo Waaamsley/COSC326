@@ -1,0 +1,38 @@
+Q2
+Tank up with 60L
+Put into cans this much 80L
+Go forward 360KM
+Drop into cans 80L
+Drive back 360KM
+Tank up with 60L
+Put into cans this much 43.25L
+Go forward 360KM
+Tank up with 30L
+Go forward 360KM
+Drop into cans 43.25L
+Drive back 360KM
+Tank up with 30L
+Drive back 360KM
+Tank up with 60L
+Put into cans this much 80L
+Go forward 360KM
+Tank up with 20L
+Go forward 360KM
+Tank up with 40L
+Go forward 13KM
+Drop into cans 20L
+Drive back 13KM
+Tank up with 2.16666L
+Put into cans this much 1.08333L
+Go forward 13KM
+Tank up with 1.08333L
+Put into cans this much 18.91666L
+Go forward 720KM
+Drop into cans 60L
+Tank up with 60L
+Go forward 720KM
+Drop into cans 20L
+Tank up with 20L
+Go forward 240KM
+
+You should have used 383.25L and gotten to the otherwise, now where did that chicken go?

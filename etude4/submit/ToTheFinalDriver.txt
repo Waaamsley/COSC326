@@ -1,0 +1,187 @@
+Q5
+fill the tank up with 60L
+into cans put 40L
+drive out for 240KM
+drop cans filled with 40L
+go back for 240KM
+fill the tank up with 40L
+into cans put 80L
+drive out for 240KM
+drop cans filled with 80L
+go back for 240KM
+fill the tank up with 40L
+into cans put 80L
+drive out for 240KM
+drop cans filled with 80L
+go back for 240KM
+fill the tank up with 40L
+into cans put 80L
+drive out for 240KM
+drop cans filled with 80L
+go back for 240KM
+fill the tank up with 40L
+into cans put 80L
+drive out for 480
+drop cans filled with 20L
+go back for 240KM
+drop cans filled with 60L
+fill the tank up with 20L
+go back for 240KM
+fill the tank up with 60L
+into cans put 80L
+drive out for 240KM
+fill the tank up with 20L
+drive out for 240KM
+drop cans filled with 80L
+go back for 480
+fill the tank up with 60L
+into cans put 80L
+drive out for 240KM
+fill the tank up with 20L
+drive out for 240KM
+drop cans filled with 80L
+go back for 480
+fill the tank up with 60L
+into cans put 80L
+drive out for 240KM
+fill the tank up with 20L
+drive out for 240KM
+drop cans filled with 60L
+fill the tank up with 20L
+drive out for 240KM
+drop cans filled with 20L
+go back for 480
+fill the tank up with 20L
+go back for 240KM
+fill the tank up with 60L
+into cans put 80L
+drive out for 240KM
+fill the tank up with 20L
+drive out for 240KM
+fill the tank up with 20L
+drive out for 240KM
+drop cans filled with 80L
+go back for 480
+fill the tank up with 20L
+go back for 240KM
+fill the tank up with 60L
+into cans put 80L
+drive out for 240KM
+fill the tank up with 20L
+drive out for 240KM
+fill the tank up with 20L
+drive out for 240KM
+drop cans filled with 60L
+fill the tank up with 20L
+drive out for 240KM
+drop cans filled with 20L
+go back for 480
+fill the tank up with 20L
+go back for 240KM
+fill the tank up with 20L
+go back for 240KM
+fill the tank up with 60L
+into cans put 80L
+drive out for 240KM
+fill the tank up with 20L
+drive out for 240KM
+fill the tank up with 20L
+drive out for 240KM
+fill the tank up with 20L
+drive out for 240KM
+drop cans filled with 80L
+go back for 480KM
+fill the tank up with 20L
+go back for 240KM
+fill the tank up with 20L
+go back for 240KM
+fill the tank up with 60L
+into cans put 80L
+drive out for 240KM
+fill the tank up with 20L
+drive out for 240KM
+fill the tank up with 20L
+drive out for 240KM
+fill the tank up with 20L
+drive out for 240KM
+fill the tank up with 20L
+drive out for 240KM
+drop cans filled with 80L
+go back for 480KM
+fill the tank up with 20L
+go back for 240KM
+fill the tank up with 20L
+go back for 240KM
+fill the tank up with 20L
+go back for 240KM
+fill the tank up with 60L
+into cans put 73.335L
+drive out for 240KM
+fill the tank up with 20L
+drive out for 240KM
+fill the tank up with 20L
+drive out for 240KM
+fill the tank up with 20L
+drive out for 240KM
+fill the tank up with 20L
+drive out for 240KM
+fill the tank up with 20L
+drive out for 240KM
+drop cans filled with 40L
+drive out for 133KM
+drop cans filled with 33.335L
+fill the tank up with 11L
+go back for 133KM
+go back for 240KM
+fill the tank up with 20L
+go back for 240KM
+fill the tank up with 20L
+go back for 240KM
+fill the tank up with 20L
+go back for 240KM
+fill the tank up with 20L
+go back for 240KM
+fill the tank up with 20L
+go back for 240KM
+
+fill the tank up with 51L
+into cans put 80L
+drive out for 240KM
+fill the tank up with 20L
+drive out for 240KM
+fill the tank up with 20L
+drive out for 240KM
+fill the tank up with 20L
+drive out for 240KM
+fill the tank up with 20L
+drive out for 240KM
+fill the tank up with 20L
+drive out for 240KM
+fill the tank up with 20L
+drive out for 133KM
+fill the tank up with 11.25
+drive out for 720KM
+drop cans filled with 60L
+fill the tank up with 60L
+drive out for 120KM
+go back for 120KM
+drop cans filled with 20L
+fill the tank up with 20L
+go back for 720KM
+fill the tank up with 11.085L
+go back for 133KM
+fill the tank up with 20L
+go back for 240KM
+fill the tank up with 20L
+go back for 240KM
+fill the tank up with 20L
+go back for 240KM
+fill the tank up with 20L
+go back for 240KM
+fill the tank up with 20L
+go back for 240KM
+fill the tank up with 20L
+go back for 240KM
+
+
+ You used 1824.335L to get back to where you were, congrats. At least you're not as bad as the other guy.

@@ -407,7 +407,7 @@ import java.util.*;
             MassiveInt low = new MassiveInt("0");
             MassiveInt diff = new MassiveInt("10");
             MassiveInt temp = new MassiveInt("0");
-            MassiveInt up = new MassiveInt("10");
+            MassiveInt up = new MassiveInt("100");
             MassiveInt zero = new MassiveInt("0");
             MassiveInt rem = (subtraction(n1, multiply(n2, count)));
             MassiveInt desire = new MassiveInt(n2.toString());
